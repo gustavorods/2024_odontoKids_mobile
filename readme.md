@@ -1,4 +1,5 @@
 svg (não usado):
-npm install react-native-svg
+<br/>
+`npm install react-native-svg`
 
-npm install react-native-svg-transformer
+`npm install react-native-svg-transformer`
