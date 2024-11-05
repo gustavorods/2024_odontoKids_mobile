@@ -1,8 +1,13 @@
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-import styles from "./src/style/style"
+import styles from "./src/style/style";
+import login from "./src/pages/login";
 
-export default function App() {
+const Stack = createStackNavigator();
+
+function Home({navigation}) {
   return (
     // Container
     <View style={styles.container}>
@@ -15,9 +20,9 @@ export default function App() {
         <Text style={styles.subtitle}>O sorriso do seu filho começa {"\n"} aqui!</Text>
       </View>
 
-       {/* Container dos botões */}
+       {/* Button container*/}
        <View style={styles.button_container}>
-        <TouchableOpacity style={styles.button_login}>
+        <TouchableOpacity style={styles.button_login} onPress={() => navigation.navigate('Login')}>
           <Text style={styles.button_login_text}>Entrar</Text>
         </TouchableOpacity>
         
@@ -26,5 +31,17 @@ export default function App() {
         </TouchableOpacity>
       </View>
     </View> 
+  );
+}
+
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+        <Stack.Screen name="Login" component={login} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
