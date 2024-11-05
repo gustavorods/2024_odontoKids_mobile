@@ -42,4 +42,4 @@ const disconnect_db = () => {
 };
 
 // Exporting Functions 
-module.exports = {findUserByEmail};
+module.exports = {};
