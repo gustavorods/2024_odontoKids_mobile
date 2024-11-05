@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput } from 'react-native';
-import styles from "../style/login_style"
+import styles from "./style"
 
 export default function Login() {
     const [email, setEmail] = useState(null);
@@ -21,7 +21,7 @@ export default function Login() {
             <View style={styles.formContainer}>
                 {/* Email */}
                 <View style={styles.inputContainer}>
-                    <Image source={require('../img/login/email_icon.png')} style={styles.icon} resizeMode="contain"/>
+                    <Image source={require('../../images/login/email_icon.png')} style={styles.icon} resizeMode="contain"/>
                     <Text style={styles.label}>Email</Text>
                 </View>
                 <TextInput 
@@ -33,7 +33,7 @@ export default function Login() {
 
                 {/* Password */}
                 <View style={styles.inputContainer}>
-                    <Image source={require('../img/login/password_icon.png')} style={styles.icon} resizeMode="contain"/>
+                    <Image source={require('../../images/login/email_icon.png')} style={styles.icon} resizeMode="contain"/>
                     <Text style={styles.label}>Senha</Text>
                 </View>
                 <TextInput 
@@ -61,3 +61,28 @@ export default function Login() {
         </View>
     );
 }
+
+// Function to test login functionality
+const login_check = async (email, password) => {
+    try {
+      // Sending a POST request to the server to check login credentials
+      const response = await fetch('http://localhost:3000/check_login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', // Specifying JSON content type for request
+        },
+        body: JSON.stringify({ email, password }), // Converting email and password into JSON format
+      });
+  
+      // Parsing the response to JSON format and returning it
+      const data = await response.json();
+      console.log(data)
+      return data;
+    } catch (error) {
+      // Logging the error message if an exception occurs
+      console.error('Error:', error.message);
+    }
+  };
+    
+  // Testing the login function with example credentials
+  login_check("gu@gsu", "123");

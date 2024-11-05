@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { connection_db, disconnect_db, login } = require('./database'); // Ajuste o caminho para o seu arquivo onde estão as funções
+const { connection_db, disconnect_db, login } = require('../database/database'); // Ajuste o caminho para o seu arquivo onde estão as funções
 
 const app = express();
 const port = 3000;
